@@ -1,0 +1,9 @@
+[credential]
+	helper = cache --timeout=7200
+[user]
+	email = logan.brooke@infospace.com
+	name = Logan Brooke
+[push]
+	default = simple
+[core]
+	editor = vim

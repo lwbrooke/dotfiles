@@ -116,9 +116,6 @@ if ! shopt -oq posix; then
   fi
 fi
 
-# vim aliases & functions
-alias vimde='vim -c "NERDTree"'
-
 # docker aliases & functions
 alias dps='docker ps'
 alias drm='docker rm'
