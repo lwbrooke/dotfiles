@@ -116,6 +116,9 @@ if ! shopt -oq posix; then
   fi
 fi
 
+# vim aliases & functions
+alias vimde='vim -c "NERDTree"'
+
 # docker aliases & functions
 alias dps='docker ps'
 alias drm='docker rm'
@@ -131,6 +134,7 @@ docker-reset() {
 GIT_PS1_SHOWDIRTYSTATE='True'
 source ~/.git-prompt.sh
 PROMPT_COMMAND='__git_ps1 "\w\[\033[0;36m\]" "\[\033[m\]\\\$ "'
+PROMPT_COMMAND="$PROMPT_COMMAND"'$([ -n "$TMUX" ] && tmux setenv TMUXPWD_$(tmux display -p "#D" | tr -d %) "$PWD")'
 
 alias_function() {
     eval "${1}() $(declare -f ${2} | sed 1d)"

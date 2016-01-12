@@ -55,6 +55,9 @@ Plugin 'wesQ3/vim-windowswap'
 " minimap
 Plugin 'severin-lemaignan/vim-minimap'
 
+" split navigation
+Plugin 'christoomey/vim-tmux-navigator'
+
 " """"
 " misc
 " """"
@@ -145,8 +148,18 @@ set hlsearch
 set ignorecase
 " case sensitive if any uppercase entered
 set smartcase
-" clear current search
-nnoremap <leader>cls :nohlsearch<CR>
+
+" """"""""""""""""
+" Custom Functions
+" """"""""""""""""
+" toggle relativenumber
+function! NumberToggle()
+    if(&relativenumber == 1)
+        set norelativenumber
+    else
+        set relativenumber
+    endif
+endfunc
 
 " """""""""""""""
 " Custom Mappings
@@ -157,6 +170,23 @@ nnoremap <leader>rtw :%s/\s\+$//<CR>
 nnoremap <leader>ywf ggvG$y
 " shiftwith shortcut
 nnoremap <leader>sw :set shiftwidth=
+" j/k scroll by visual lines
+" nnoremap j gj
+" nnoremap k gk
+" resource vimrc
+nnoremap <leader>r :source ~/.vimrc<CR>
+" clear current search
+nnoremap <leader>cls :nohlsearch<CR>
+" single quote current word
+nnoremap <leader>sqw ciw'<C-r>"'<Esc>bh
+" unsinglequote current word
+nnoremap <leader>usqw di'hPl2xb
+" double quote current word
+nnoremap <leader>dqw ciw"<C-r>""<Esc>bh
+" undoublequote current word
+nnoremap <leader>udqw di"hPl2xb
+" toggle relativenumber
+nnoremap <leader>n :call NumberToggle()<CR>
 
 " """"""
 " Previm
@@ -205,4 +235,4 @@ let g:airline_powerline_fonts=1
 " let g:airline_symbols.paste = '∥'
 " let g:airline_symbols.whitespace = 'Ξ'
 " theme
-let g:airline_theme='bubblegum'
+let g:airline_theme='badwolf'
