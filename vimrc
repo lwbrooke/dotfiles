@@ -168,7 +168,7 @@ endfunc
 " Custom Mappings
 " """""""""""""""
 " remove trailing whitespace
-nnoremap <leader>rtw :%s/\s\+$//<CR>
+nnoremap <leader>rtw :%s/\s\+$//<CR>:nohlsearch<CR>
 " yank whole file
 nnoremap <leader>ywf ggvG$y
 " shiftwith shortcut
@@ -190,6 +190,12 @@ nnoremap <leader>dqw ciw"<C-r>""<Esc>bh
 nnoremap <leader>udqw di"hPl2xb
 " toggle relativenumber
 nnoremap <leader>n :call NumberToggle()<CR>
+" delete parenthesis block
+nnoremap <leader>d( vabd<Esc>
+" delete bracket block
+nnoremap <leader>d[ va[d<Esc>
+" delete braces block
+nnoremap <leader>d{ vaBd<Esc>
 
 " """"""
 " Previm
