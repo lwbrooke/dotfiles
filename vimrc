@@ -216,6 +216,8 @@ let g:previm_enable_realtime = 1
 let g:ycm_autoclose_preview_window_after_completion=1
 " goto function shortcut
 map <leader>g :YcmCompleter GoToDefinitionElseDeclaration<CR>
+" completion for python 3
+let g:ycm_python_binary_path = '/usr/bin/python3'
 
 " """"""""""
 " vim-flake8
