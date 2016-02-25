@@ -104,9 +104,9 @@ syntax on
 " enable all Python syntax highlighting features
 let python_highlight_all=1
 
-" """""""""""""""
-" tabs and spaces
-" """""""""""""""
+" """""""""""""""""""""""""
+" tabs, spaces, and folding
+" """""""""""""""""""""""""
 " number of visual spaces per tab
 set tabstop=4
 " spaces in tabs when editing
@@ -117,6 +117,9 @@ set expandtab
 set shiftwidth=4
 " auto indentation
 set autoindent
+" indent based folding
+autocmd Syntax python setlocal foldmethod=indent
+autocmd Syntax python normal zR
 
 " """""""
 " buffers
