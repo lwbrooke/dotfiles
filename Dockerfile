@@ -41,5 +41,5 @@ RUN chown -R dev: /home/dev
 USER dev
 
 RUN mkdir -p /home/dev/.vim/bundle \
-    && git clone https://github.com/VundleVim/Vundle.vim.git /home/dev/.vim/bundle/Vundle.vim \ 
+    && git clone https://github.com/VundleVim/Vundle.vim.git /home/dev/.vim/bundle/Vundle.vim \
     && vim +PluginInstall +qall

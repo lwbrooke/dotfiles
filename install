@@ -1,0 +1,17 @@
+#!/usr/bin/env sh
+
+# bashrc
+cp ./bashrc_aliases ~/.bashrc_aliases
+echo "source ~/.bashrc_aliases" >> ~/.bashrc
+
+# git
+cp ./gitconfig ~/.gitconfig
+cp ./git-prompt.sh ~/.git-prompt.sh
+
+# tmux
+cp ./tmux.conf ~/.tmux.conf
+cp ./tmux-powerlinerc ~/.tmux-powerlinerc
+
+# vim
+cp ./vimrc ~/.vimrc
+cp -r ./vim ~/.vim
