@@ -58,6 +58,9 @@ Plugin 'severin-lemaignan/vim-minimap'
 " split navigation
 Plugin 'christoomey/vim-tmux-navigator'
 
+" fuzzy search
+Plugin 'ctrlpvim/ctrlp.vim'
+
 " """"
 " misc
 " """"
