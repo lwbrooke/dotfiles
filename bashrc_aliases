@@ -35,3 +35,21 @@ command_not_found_handle() {
 
     orig_command_not_found_handle "$command" "${args[@]}"
 }
+
+# create and activate a new virtualenv in the current directory
+mkvenv() {
+    if [ ! -d ./.virtualenv/ ];
+    then
+        mkdir ./.virtualenv
+        if [ -z $1 ];
+        then
+            virtualenv ./.virtualenv
+        else
+            virtualenv -p $1 ./.virtualenv
+        fi
+    fi
+
+    source .virtualenv/bin/activate
+
+    pip install boto3
+}

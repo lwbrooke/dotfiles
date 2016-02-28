@@ -117,9 +117,6 @@ set expandtab
 set shiftwidth=4
 " auto indentation
 set autoindent
-" indent based folding
-autocmd Syntax python setlocal foldmethod=indent
-autocmd Syntax python normal zR
 
 " """""""
 " buffers
@@ -203,18 +200,18 @@ nnoremap <leader>d( vabd<Esc>
 nnoremap <leader>d[ va[d<Esc>
 " delete braces block
 nnoremap <leader>d{ vaBd<Esc>
+" set foldmethod syntax
+nnoremap <leader>sf :set foldmethod=syntax<CR>zR
+" set foldmethod indent
+nnoremap <leader>if :set foldmethod=indent<CR>zR
+" set foldmethod manual
+nnoremap <leader>mf :set foldmethod=manual<CR>zR
 
 " """"""
 " Previm
 " """"""
 " enable realtime markdown
 let g:previm_enable_realtime = 1
-
-" """"""""
-" NERDTree
-" """"""""
-" show hidden (.*) files by default
-" let NERDTreeShowHidden=1
 
 " """""""""""""
 " YouCompleteMe
