@@ -207,6 +207,12 @@ nnoremap <leader>if :set foldmethod=indent<CR>zR
 " set foldmethod manual
 nnoremap <leader>mf :set foldmethod=manual<CR>zR
 
+" """""""""""""
+" Auto Commands
+" """""""""""""
+" start minimap
+autocmd VimEnter * Minimap
+
 " """"""
 " Previm
 " """"""
@@ -236,6 +242,10 @@ let g:ycm_python_binary_path = '/usr/bin/python3'
 set laststatus=2
 " use powerline fonts
 let g:airline_powerline_fonts=1
+" show buffers
+let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#show_buffers = 1
+let g:airline#extensions#tabline#buffer_nr_show = 1
 " use unicode fonts
 " if !exists('g:airline_symbols')
 "   let g:airline_symbols = {}
