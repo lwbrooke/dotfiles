@@ -1,5 +1,22 @@
 #!/usr/bin/env sh
 
+# !!! requires root !!!
+
+# terminal colors
+# background: #0E2E20
+# foreground: #29E18C
+
+# packages
+apt-get update -y
+apt-get install -y \
+    python3-pip \
+    python3.5-venv \
+    python3.4-venv \
+    curl \
+    vim \
+    build-essential \
+    tmux
+
 # bashrc
 cp ./bashrc_aliases ~/.bashrc_aliases
 echo "source ~/.bashrc_aliases" >> ~/.bashrc

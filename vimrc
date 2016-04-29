@@ -30,13 +30,6 @@ Plugin 'chase/vim-ansible-yaml'
 " has compiled component (use --clang-completer)
 Plugin 'Valloric/YouCompleteMe'
 
-" Markdown preview
-Plugin 'kannokanno/previm'
-
-" Open browser
-" used in conjuction with previm
-Plugin 'tyru/open-browser.vim'
-
 " Hotkeys for commenting/uncommenting
 Plugin 'tpope/vim-commentary'
 
@@ -60,6 +53,9 @@ Plugin 'christoomey/vim-tmux-navigator'
 
 " fuzzy search
 Plugin 'ctrlpvim/ctrlp.vim'
+
+" navigation(and other) mappings
+Plugin 'tpope/vim-unimpaired'
 
 " """"
 " misc
@@ -155,6 +151,15 @@ set hlsearch
 set ignorecase
 " case sensitive if any uppercase entered
 set smartcase
+" ignore node_modules directories
+set wildignore+=*/node_modules/*
+" ignore virtualenv directories
+set wildignore+=*/venv/*,*/.virtualenv/*,*/.venv/*
+
+" """"""""""""""""""""""
+" Swap file organization
+" """"""""""""""""""""""
+set directory^=$HOME/.vim/tmp//
 
 " """"""""""""""""
 " Custom Functions
@@ -211,7 +216,7 @@ nnoremap <leader>mf :set foldmethod=manual<CR>zR
 " Auto Commands
 " """""""""""""
 " start minimap
-autocmd VimEnter * Minimap
+" autocmd VimEnter * Minimap
 
 " """"""
 " Previm
