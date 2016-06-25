@@ -17,6 +17,7 @@ apt-get install -y --no-install-recommends \
     ca-certificates \
     linux-image-extra-$(uname -r) \
     python3-dev \
+    python-dev \
     python3-pip \
     python3-venv \
     libncurses5-dev \
@@ -99,6 +100,7 @@ cd ~/git/vim/
             --prefix=/usr
 make VIMRUNTIMEDIR=/usr/share/vim/vim74
 make install
+vim --version
 cd $CUR_DIR
 
 echo "Configuring vim..."
