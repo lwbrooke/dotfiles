@@ -15,6 +15,9 @@ apt-get install -y --no-install-recommends \
     python3-dev \
     python3-pip \
     python3-venv \
+    libncurses5-dev \
+    libx11-dev \
+    libxt-dev \
     ruby \
     ruby-dev \
     curl \
@@ -48,7 +51,8 @@ cd ~/git/vim/
             --enable-luainterp \
             --enable-cscope \
             --with-x \
-            --with-compiledby="Logan Brooke"
+            --with-compiledby="Logan Brooke" \
+            --prefix=/usr
 make VIMRUNTIMEDIR=/usr/share/vim/vim74
 make install
 cd $CUR_DIR
