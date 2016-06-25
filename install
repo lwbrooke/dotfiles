@@ -41,7 +41,7 @@ service docker start
 docker run --rm hello-world
 docker rmi hello-world
 groupadd docker
-usermod -aG docker ubuntu
+usermod -aG docker logan
 systemctl enable docker
 
 # rust
