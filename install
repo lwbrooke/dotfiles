@@ -54,6 +54,7 @@ echo "Installing go..."
 VERSION=1.6.2 && OS=linux && ARCH=amd64
 curl -O https://storage.googleapis.com/golang/go$VERSION.$OS-$ARCH.tar.gz
 tar -C /usr/local -xzf go$VERSION.$OS-$ARCH.tar.gz
+export PATH=$PATH:/usr/local/go/bin
 echo 'export PATH=$PATH:/usr/local/go/bin' >> /etc/profile
 
 # node.js
@@ -113,7 +114,7 @@ git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
 vim +PluginInstall +qall
 CUR_DIR=$PWD
 cd ~/.vim/bundle/YouCompleteMe
-./install.py --racer-completer --tern-completer --gocode-completer --clang-completer
+python3 install.py --racer-completer --tern-completer --gocode-completer --clang-completer
 cd $CUR_DIR
 
 # misc
