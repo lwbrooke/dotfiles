@@ -54,6 +54,7 @@ echo "Installing go..."
 VERSION=1.6.2 && OS=linux && ARCH=amd64
 curl -O https://storage.googleapis.com/golang/go$VERSION.$OS-$ARCH.tar.gz
 tar -C /usr/local -xzf go$VERSION.$OS-$ARCH.tar.gz
+rm go$VERSION.$OS-$ARCH.tar.gz
 export PATH=$PATH:/usr/local/go/bin
 echo 'export PATH=$PATH:/usr/local/go/bin' >> /etc/profile
 
@@ -127,11 +128,12 @@ cd $CUR_DIR
 echo "Fonts installed. Manual selection required in Unity Tweak Tool..."
 
 echo "Installing Paper Theme and Icons..."
-add-apt-repository ppa:snwh/pulp
+add-apt-repository -y ppa:snwh/pulp
 apt-get update
-apt-get install paper-icon-theme
-apt-get install paper-gtk-theme
-apt-get install paper-cursor-theme
+apt-get install -y --no-install-recommends \
+    paper-icon-theme \
+    paper-gtk-theme \
+    paper-cursor-theme
 echo "Theme installed. Manual selection required in Unity Tweak Tool..."
 
 echo "Please log out and back in for all changes to take effect"
