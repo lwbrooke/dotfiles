@@ -36,10 +36,9 @@ echo "deb https://apt.dockerproject.org/repo ubuntu-xenial main" > /etc/apt/sour
 apt-get update
 apt-get purge lxc-docker
 apt-cache policy docker-engine
-apt-get install docker-engine
+apt-get install -y --no-install-recommends docker-engine
 service docker start
-docker run --name hellow-world hello-world
-docker rm hello-world
+docker run --rm hello-world
 docker rmi hello-world
 groupadd docker
 usermod -aG docker ubuntu
