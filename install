@@ -104,6 +104,10 @@ make install
 vim --version
 cd $CUR_DIR
 
+echo "Configuring vim..."
+cp ./vimrc ~/.vimrc
+cp -r ./vim ~/.vim
+
 echo "Installing vim plugins..."
 git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
 vim +PluginInstall +qall
@@ -111,10 +115,6 @@ CUR_DIR=$PWD
 cd ~/.vim/bundle/YouCompleteMe
 ./install.py --racer-completer --tern-completer --gocode-completer --clang-completer
 cd $CUR_DIR
-
-echo "Configuring vim..."
-cp ./vimrc ~/.vimrc
-cp -r ./vim ~/.vim
 
 # misc
 echo "Installing powerline fonts..."
