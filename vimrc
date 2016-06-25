@@ -94,7 +94,7 @@ let mapleader=","
 " """"""
 " set colorscheme
 set background=dark
-colorscheme badwolf
+silent! colorscheme badwolf
 " enable syntax highlighting
 syntax on
 " enable all Python syntax highlighting features
