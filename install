@@ -1,6 +1,8 @@
-#!/usr/bin/env sh
+#!/usr/bin/env bash
 
 # !!! requires root !!!
+
+set -e
 
 # terminal colors
 # background: #0E2E20
@@ -8,9 +10,10 @@
 
 # packages
 apt-get update -y
-apt-get install -y \
+apt-get install -y --no-install-recommends \
     build-essential \
     python3-dev \
+    ruby \
     ruby-dev \
     curl \
     tmux \
