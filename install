@@ -40,7 +40,6 @@ apt-get install -y --no-install-recommends docker-engine
 service docker start
 docker run --rm hello-world
 docker rmi hello-world
-groupadd docker
 usermod -aG docker logan
 systemctl enable docker
 
@@ -63,7 +62,7 @@ npm install npm -g
 
 # python
 echo "Installing python packages..."
-pip3 install flake8 and flake8-docstrings
+pip3 install flake8 flake8-docstrings
 
 # bashrc
 echo "Configuring bash aliases..."
