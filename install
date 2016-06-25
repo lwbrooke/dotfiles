@@ -22,9 +22,6 @@ apt-get install -y --no-install-recommends \
     tree \
     locate
 
-# python
-python3 -m ensurepip --upgrade
-
 # bashrc
 cp ./bashrc_aliases ~/.bashrc_aliases
 echo "source ~/.bashrc_aliases" >> ~/.bashrc
