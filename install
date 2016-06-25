@@ -9,19 +9,23 @@
 # packages
 apt-get update -y
 apt-get install -y \
-    python3-pip \
-    python3.5-venv \
-    python3.4-venv \
-    curl \
-    vim \
     build-essential \
-    tmux
+    python3-dev \
+    ruby-dev \
+    curl \
+    tmux \
+    tree \
+    locate
+
+# python
+python3 -m ensurepip --upgrade
 
 # bashrc
 cp ./bashrc_aliases ~/.bashrc_aliases
 echo "source ~/.bashrc_aliases" >> ~/.bashrc
 
 # git
+git clone https://github.com/erikw/tmux-powerline.git ~/git/tmux-powerline/
 cp ./gitconfig ~/.gitconfig
 cp ./git-prompt.sh ~/.git-prompt.sh
 
@@ -30,5 +34,21 @@ cp ./tmux.conf ~/.tmux.conf
 cp ./tmux-powerlinerc ~/.tmux-powerlinerc
 
 # vim
+git clone https://github.com/vim/vim.git ~/git/vim/
+CUR_DIR=$PWD
+cd ~/git/vim/
+./configure --with-features=huge \
+            --enable-multibyte \
+            --enable-rubyinterp \
+            --enable-python3interp \
+            --with-python3-config-dir=/usr/lib/python3.5/config-3.5m-x86_64-linux-gnu \
+            --enable-perlinterp \
+            --enable-luainterp \
+            --enable-cscope \
+            --with-x \
+            --with-compiledby="Logan Brooke"
+make VIMRUNTIMEDIR=/usr/share/vim/vim74
+make install
+cd $CUR_DIR
 cp ./vimrc ~/.vimrc
 cp -r ./vim ~/.vim
