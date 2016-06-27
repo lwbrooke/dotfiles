@@ -13,18 +13,10 @@ Plugin 'VundleVim/Vundle.vim'
 " """""""""""""""
 " code and syntax
 " """""""""""""""
-" PEP8 checking
-" pip install flake8 and flake8-docstrings
-Plugin 'nvie/vim-flake8'
-
+" general
+" """""""
 " Syntax checking
 Plugin 'scrooloose/syntastic'
-
-" Dockerfile syntax highlighting
-Plugin 'ekalinin/Dockerfile.vim'
-
-" yaml/ansible support
-Plugin 'chase/vim-ansible-yaml'
 
 " code completion
 " has compiled component (use --clang-completer)
@@ -32,6 +24,35 @@ Plugin 'Valloric/YouCompleteMe'
 
 " Hotkeys for commenting/uncommenting
 Plugin 'tpope/vim-commentary'
+
+" docker
+" """"""
+" Dockerfile syntax highlighting
+Plugin 'ekalinin/Dockerfile.vim'
+
+" html
+" """"
+" highlight matching tags
+Plugin 'Valloric/MatchTagAlways'
+
+" javascript
+" """"""""""
+" improved syntax highlighing
+Plugin 'pangloss/vim-javascript'
+
+" syntax highlighting for libraries
+Plugin 'othree/javascript-libraries-syntax.vim'
+
+" python
+" """"""
+" PEP8 checking
+" $ pip install flake8 flake8-docstrings
+Plugin 'nvie/vim-flake8'
+
+" yaml
+" """"
+" yaml/ansible support
+Plugin 'chase/vim-ansible-yaml'
 
 " """"""""""
 " navigation
@@ -173,9 +194,18 @@ function! NumberToggle()
     endif
 endfunc
 
-" """""""""""""""
-" Custom Mappings
-" """""""""""""""
+" toggle ctrlp_show_hidden
+function! CtrlPShowHiddenToggle()
+    if(g&:ctrlp_show_hidden == 1)
+        let g:ctrlp_show_hidden=0
+    else
+        let g:ctrlp_show_hidden=1
+    endif
+endfunc
+
+" """"""""""""""""""""
+" Normal Mode Mappings
+" """"""""""""""""""""
 " remove trailing whitespace
 nnoremap <leader>rtw :%s/\s\+$//<CR>:nohlsearch<CR>
 " yank whole file
@@ -199,6 +229,8 @@ nnoremap <leader>dqw ciw"<C-r>""<Esc>bh
 nnoremap <leader>udqw di"hPl2xb
 " toggle relativenumber
 nnoremap <leader>n :call NumberToggle()<CR>
+" toggle ctrlp_show_hidden
+nnoremap <leader>cph :call CtrlPShowHiddenToggle()<CR>
 " delete parenthesis block
 nnoremap <leader>d( vabd<Esc>
 " delete bracket block
@@ -211,6 +243,8 @@ nnoremap <leader>sf :set foldmethod=syntax<CR>zR
 nnoremap <leader>if :set foldmethod=indent<CR>zR
 " set foldmethod manual
 nnoremap <leader>mf :set foldmethod=manual<CR>zR
+" close all other buffers
+nnoremap <leader>cob :w \| %bd \| e#<CR>
 
 " """""""""""""
 " Auto Commands
@@ -266,3 +300,8 @@ let g:airline#extensions#tabline#buffer_nr_show = 1
 " let g:airline_symbols.whitespace = 'Ξ'
 " theme
 let g:airline_theme='badwolf'
+
+" """""""""""""""""""""""""""""""
+" javascript-libraries-syntax.vim
+" """""""""""""""""""""""""""""""
+let g:used_javascript_libs = 'angularjs,angularuirouter,requirejs,jasmine'
