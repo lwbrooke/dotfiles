@@ -6,7 +6,6 @@ import subprocess
 
 def main(base, bash, docker, git, golang, node_js, python_3, ruby, rust,
          themes_and_fonts, tmux, vim):
-    return
     if base:
         subprocess.run('source', 'install-base.sh')
 
