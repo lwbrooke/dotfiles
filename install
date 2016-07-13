@@ -7,40 +7,40 @@ import subprocess
 def main(base, bash, docker, git, golang, node_js, python_3, ruby, rust,
          themes_and_fonts, tmux, vim):
     if base:
-        subprocess.run('source', 'install-base.sh')
+        subprocess.run('./install-base.sh')
 
     if docker:
-        subprocess.run('source', 'install-docker.sh')
+        subprocess.run('./install-docker.sh')
 
     if rust:
-        subprocess.run('source', 'install-rust.sh')
+        subprocess.run('./install-rust.sh')
 
     if golang:
-        subprocess.run('source', 'install-golang.sh')
+        subprocess.run('./install-golang.sh')
 
     if node_js:
-        subprocess.run('source', 'install-nodejs.sh')
+        subprocess.run('./install-nodejs.sh')
 
     if ruby:
-        subprocess.run('source', 'install-ruby.sh')
+        subprocess.run('./install-ruby.sh')
 
     if python_3:
-        subprocess.run('source', 'install-python-3.sh')
+        subprocess.run('./install-python-3.sh')
 
     if bash:
-        subprocess.run('source', 'install-bash.sh')
+        subprocess.run('./install-bash.sh')
 
     if git:
-        subprocess.run('source', 'install-git.sh')
+        subprocess.run('./install-git.sh')
 
     if tmux:
-        subprocess.run('source', 'install-tmux.sh')
+        subprocess.run('./install-tmux.sh')
 
     if vim:
-        subprocess.run('source', 'install-vim.sh')
+        subprocess.run('./install-vim.sh')
 
     if themes_and_fonts:
-        subprocess.run('source', 'install-themes-and-fonts.sh')
+        subprocess.run('./install-themes-and-fonts.sh')
 
     print('Please log out and back in for all changes to take effect')
     print('Installation Complete!')
@@ -65,6 +65,6 @@ if __name__ == '__main__':
 
     args = vars(parser.parse_args())
 
-    print('Selected options:', *(k for k, v in args.items() if v), sep='\n\t')
+    print('Selected options:', *sorted(k for k, v in args.items() if v), sep='\n\t')
 
     main(**args)
