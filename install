@@ -1,140 +1,71 @@
-#!/usr/bin/env bash
+#!/usr/bin/env python3
 
-# !!! requires root !!!
+import argparse
+import subprocess
 
-set -e
 
-# terminal colors
-# background: #0E2E20
-# foreground: #29E18C
+def main(base, bash, docker, git, golang, node_js, python_3, ruby, rust,
+         themes_and_fonts, tmux, vim):
+    return
+    if base:
+        subprocess.run('source', 'install-base.sh')
 
-# packages
-echo "Installing apt packages..."
-apt-get update -y
-apt-get install -y --no-install-recommends \
-    build-essential \
-    apt-transport-https \
-    ca-certificates \
-    linux-image-extra-$(uname -r) \
-    python3-dev \
-    python-dev \
-    python3-pip \
-    python3-venv \
-    libncurses5-dev \
-    libx11-dev \
-    libxt-dev \
-    ruby \
-    ruby-dev \
-    cmake \
-    curl \
-    tmux \
-    tree \
-    locate
+    if docker:
+        subprocess.run('source', 'install-docker.sh')
 
-# docker
-echo "Installing docker..."
-apt-key adv --keyserver hkp://p80.pool.sks-keyservers.net:80 --recv-keys 58118E89F3A912897C070ADBF76221572C52609D
-echo "deb https://apt.dockerproject.org/repo ubuntu-xenial main" > /etc/apt/sources.list.d/docker.list
-apt-get update
-apt-get purge lxc-docker
-apt-cache policy docker-engine
-apt-get install -y --no-install-recommends docker-engine
-service docker start
-docker run --rm hello-world
-docker rmi hello-world
-usermod -aG docker logan
-systemctl enable docker
+    if rust:
+        subprocess.run('source', 'install-rust.sh')
 
-# rust
-echo "Installing rust..."
-curl -sSf https://static.rust-lang.org/rustup.sh | sh
+    if golang:
+        subprocess.run('source', 'install-golang.sh')
 
-# go
-echo "Installing go..."
-VERSION=1.6.2 && OS=linux && ARCH=amd64
-curl -O https://storage.googleapis.com/golang/go$VERSION.$OS-$ARCH.tar.gz
-tar -C /usr/local -xzf go$VERSION.$OS-$ARCH.tar.gz
-rm go$VERSION.$OS-$ARCH.tar.gz
-export PATH=$PATH:/usr/local/go/bin
-echo 'export PATH=$PATH:/usr/local/go/bin' >> /etc/profile
+    if node_js:
+        subprocess.run('source', 'install-nodejs.sh')
 
-# node.js
-echo "Installing node.js..."
-curl -sL https://deb.nodesource.com/setup_6.x | sudo -E bash -
-apt-get install -y nodejs
-npm install npm -g
+    if ruby:
+        subprocess.run('source', 'install-ruby.sh')
 
-# python
-echo "Installing python packages..."
-pip3 install flake8 flake8-docstrings
+    if python_3:
+        subprocess.run('source', 'install-python-3.sh')
 
-# bashrc
-echo "Configuring bash aliases..."
-cp ./bashrc_aliases ~/.bashrc_aliases
-echo "source ~/.bashrc_aliases" >> ~/.bashrc
+    if bash:
+        subprocess.run('source', 'install-bash.sh')
 
-# git
-echo "Configuring git..."
+    if git:
+        subprocess.run('source', 'install-git.sh')
 
-cp ./gitconfig ~/.gitconfig
-cp ./git-prompt.sh ~/.git-prompt.sh
+    if tmux:
+        subprocess.run('source', 'install-tmux.sh')
 
-# tmux
-echo "Configuring tmux..."
-git clone https://github.com/erikw/tmux-powerline.git ~/git/tmux-powerline/
-cp ./tmux.conf ~/.tmux.conf
-cp ./tmux-powerlinerc ~/.tmux-powerlinerc
+    if vim:
+        subprocess.run('source', 'install-vim.sh')
 
-# vim
-echo "Installing vim..."
-git clone https://github.com/vim/vim.git ~/git/vim/
-CUR_DIR=$PWD
-cd ~/git/vim/
-./configure --with-features=huge \
-            --enable-multibyte \
-            --enable-rubyinterp \
-            --enable-python3interp \
-            --with-python3-config-dir=/usr/lib/python3.5/config-3.5m-x86_64-linux-gnu \
-            --enable-perlinterp \
-            --enable-luainterp \
-            --enable-cscope \
-            --with-x \
-            --with-compiledby="Logan Brooke" \
-            --prefix=/usr
-make VIMRUNTIMEDIR=/usr/share/vim/vim74
-make install
-vim --version
-cd $CUR_DIR
+    if themes_and_fonts:
+        subprocess.run('source', 'install-themes-and-fonts.sh')
 
-echo "Configuring vim..."
-cp ./vimrc ~/.vimrc
-cp -r ./vim ~/.vim
+    print('Please log out and back in for all changes to take effect')
+    print('Installation Complete!')
 
-echo "Installing vim plugins..."
-git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
-vim +PluginInstall +qall
-CUR_DIR=$PWD
-cd ~/.vim/bundle/YouCompleteMe
-python3 install.py --racer-completer --tern-completer --gocode-completer --clang-completer
-cd $CUR_DIR
 
-# misc
-echo "Installing powerline fonts..."
-git clone https://github.com/powerline/fonts.git ~/git/fonts
-CUR_DIR=$PWD
-cd ~/git/fonts
-./install.sh
-cd $CUR_DIR
-echo "Fonts installed. Manual selection required in Unity Tweak Tool..."
+if __name__ == '__main__':
+    parser = argparse.ArgumentParser(
+        formatter_class=argparse.ArgumentDefaultsHelpFormatter)
 
-echo "Installing Paper Theme and Icons..."
-add-apt-repository -y ppa:snwh/pulp
-apt-get update
-apt-get install -y --no-install-recommends \
-    paper-icon-theme \
-    paper-gtk-theme \
-    paper-cursor-theme
-echo "Theme installed. Manual selection required in Unity Tweak Tool..."
+    parser.add_argument('-b', '--bash', action='store_true', help='Configure bash')
+    parser.add_argument('-g', '--git', action='store_true', help='Configure git')
+    parser.add_argument('-G', '--golang', action='store_true', help='Install golang and default global packages')
+    parser.add_argument('-N', '--no-base', action='store_false', dest='base', help='Don\'t install base packages')
+    parser.add_argument('-d', '--docker', action='store_true', help='Install docker')
+    parser.add_argument('-n', '--node-js', action='store_true', help='Install node.js and default global packages')
+    parser.add_argument('-p', '--python-3', action='store_true', help='Install global packages for python 3')
+    parser.add_argument('-r', '--rust', action='store_true', help='Install rust and default global packages')
+    parser.add_argument('-R', '--ruby', action='store_true', help='Install ruby and default global packages')
+    parser.add_argument('-t', '--tmux', action='store_true', help='Install and configure tmux')
+    parser.add_argument('-T', '--themes-and-fonts', action='store_true', help='Install extra themes and fonts')
+    parser.add_argument('-v', '--vim', action='store_true', help='Install and configure vim')
 
-echo "Please log out and back in for all changes to take effect"
-echo "Installation Complete!"
+    args = vars(parser.parse_args())
+
+    print('Selected options:', *(k for k, v in args.items() if v), sep='\n\t')
+
+    main(**args)

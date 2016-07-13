@@ -218,11 +218,10 @@ nnoremap <leader>mf :set foldmethod=manual<CR>zR
 " start minimap
 " autocmd VimEnter * Minimap
 
-" """"""
-" Previm
-" """"""
-" enable realtime markdown
-let g:previm_enable_realtime = 1
+" """""""""
+" syntastic
+" """""""""
+let g:syntastic_python_python_exec = '/usr/bin/python3'
 
 " """""""""""""
 " YouCompleteMe
