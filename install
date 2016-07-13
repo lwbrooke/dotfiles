@@ -46,7 +46,7 @@ def main(base, bash, docker, git, golang, node_js, python_3, ruby, rust,
         commands.append('./install-themes-and-fonts.sh')
 
     for command in commands:
-        result = subrocess.run(command)
+        result = subprocess.run(command)
         if result.returncode != 0:
             print('Installation failed!')
             print('Failed step: ', command)
