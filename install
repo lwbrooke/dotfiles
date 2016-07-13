@@ -2,45 +2,55 @@
 
 import argparse
 import subprocess
+import sys
 
 
 def main(base, bash, docker, git, golang, node_js, python_3, ruby, rust,
          themes_and_fonts, tmux, vim):
+    commands = []
+
     if base:
-        subprocess.run('./install-base.sh')
+        commands.append('./install-base.sh')
 
     if docker:
-        subprocess.run('./install-docker.sh')
+        commands.append('./install-docker.sh')
 
     if rust:
-        subprocess.run('./install-rust.sh')
+        commands.append('./install-rust.sh')
 
     if golang:
-        subprocess.run('./install-golang.sh')
+        commands.append('./install-golang.sh')
 
     if node_js:
-        subprocess.run('./install-nodejs.sh')
+        commands.append('./install-nodejs.sh')
 
     if ruby:
-        subprocess.run('./install-ruby.sh')
+        commands.append('./install-ruby.sh')
 
     if python_3:
-        subprocess.run('./install-python-3.sh')
+        commands.append('./install-python-3.sh')
 
     if bash:
-        subprocess.run('./install-bash.sh')
+        commands.append('./install-bash.sh')
 
     if git:
-        subprocess.run('./install-git.sh')
+        commands.append('./install-git.sh')
 
     if tmux:
-        subprocess.run('./install-tmux.sh')
+        commands.append('./install-tmux.sh')
 
     if vim:
-        subprocess.run('./install-vim.sh')
+        commands.append('./install-vim.sh')
 
     if themes_and_fonts:
-        subprocess.run('./install-themes-and-fonts.sh')
+        commands.append('./install-themes-and-fonts.sh')
+
+    for command in commands:
+        result = subrocess.run(command)
+        if result.returncode != 0:
+            print('Installation failed!')
+            print('Failed step: ', command)
+            sys.exit(1)
 
     print('Please log out and back in for all changes to take effect')
     print('Installation Complete!')
