@@ -19,11 +19,14 @@ Plugin 'VundleVim/Vundle.vim'
 Plugin 'scrooloose/syntastic'
 
 " code completion
-" has compiled component (use --clang-completer)
+" has compiled component
 Plugin 'Valloric/YouCompleteMe'
 
 " Hotkeys for commenting/uncommenting
 Plugin 'tpope/vim-commentary'
+
+" Manipulate surroundings of text objects
+Plugin 'tpope/vim-surround'
 
 " docker
 " """"""
@@ -69,7 +72,7 @@ Plugin 'wesQ3/vim-windowswap'
 " minimap
 Plugin 'severin-lemaignan/vim-minimap'
 
-" split navigation
+" split navigation w/tmux
 Plugin 'christoomey/vim-tmux-navigator'
 
 " fuzzy search
@@ -91,6 +94,9 @@ Plugin 'vim-airline/vim-airline-themes'
 
 " colorschemes
 Plugin 'flazz/vim-colorschemes'
+
+" repeat plugin commands
+Plugin 'tpope/vim-repeat'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
