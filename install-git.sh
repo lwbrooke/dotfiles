@@ -6,5 +6,5 @@ set -e
 
 echo "Configuring git..."
 
-ln ./gitconfig ~/.gitconfig
+cat ./gitconfig >> ~/.gitconfig
 ln ./git-prompt.sh ~/.git-prompt.sh
