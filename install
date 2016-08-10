@@ -33,7 +33,7 @@ def main(dotfiles_only):
 
 
 def _setup_git(email, name):
-    subprocess.run('sudo apt-get update -y && sudo apt-get install git',
+    subprocess.run('sudo apt-get update -y && sudo apt-get install -y git',
                    shell=True, check=True)
     subprocess.run('git clone git@github.com:lbrookeIS/dotfiles.git .',
                    input=b'yes\n', shell=True, check=True)
