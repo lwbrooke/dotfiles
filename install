@@ -1,80 +1,82 @@
 #!/usr/bin/env python3
 
+from getpass import getpass, getuser
+import pip
 import argparse
 import subprocess
 import sys
+import os
 
 
-def main(base, bash, docker, git, golang, node_js, python_3, ruby, rust,
-         themes_and_fonts, tmux, vim):
-    commands = []
-
-    if base:
-        commands.append('./install-base.sh')
-
-    if docker:
-        commands.append('./install-docker.sh')
-
-    if rust:
-        commands.append('./install-rust.sh')
-
-    if golang:
-        commands.append('./install-golang.sh')
-
-    if node_js:
-        commands.append('./install-nodejs.sh')
-
-    if ruby:
-        commands.append('./install-ruby.sh')
-
-    if python_3:
-        commands.append('./install-python-3.sh')
-
-    if bash:
-        commands.append('./install-bash.sh')
-
-    if git:
-        commands.append('./install-git.sh')
-
-    if tmux:
-        commands.append('./install-tmux.sh')
-
-    if vim:
-        commands.append('./install-vim.sh')
-
-    if themes_and_fonts:
-        commands.append('./install-themes-and-fonts.sh')
-
-    for command in commands:
-        result = subprocess.run(command)
-        if result.returncode != 0:
-            print('Installation failed!')
-            print('Failed step: ', command)
-            sys.exit(1)
+def main(dotfiles_only):
+    saved_dir = os.getcwd()
+    directory = os.path.expanduser('~/projects/dotfiles/')
+    os.makedirs(directory, exist_ok=True)
+    os.chdir(directory)
+    name = input('Enter name: ')
+    email = input('Enter email: ')
+    _setup_ssh(email)
+    _setup_git(email, name)
+    subprocess.run('./install-base.sh', check=True, shell=True)
+    subprocess.run('./install-docker.sh', check=True, shell=True)
+    subprocess.run('./install-rust.sh', check=True, shell=True)
+    subprocess.run('./install-golang.sh', check=True, shell=True)
+    subprocess.run('./install-nodejs.sh', check=True, shell=True)
+    subprocess.run('./install-ruby.sh', check=True, shell=True)
+    subprocess.run('./install-python-3.sh', check=True, shell=True)
+    subprocess.run('./install-bash.sh', check=True, shell=True)
+    subprocess.run('./install-tmux.sh', check=True, shell=True)
+    subprocess.run('./install-vim.sh', check=True, shell=True)
+    subprocess.run('./install-themes-and-fonts.sh', check=True, shell=True)
 
     print('Please log out and back in for all changes to take effect')
     print('Installation Complete!')
+
+
+def _setup_git(email, name):
+    subprocess.run('sudo apt-get update -y && sudo apt-get install git',
+                   shell=True, check=True)
+    subprocess.run('git clone git@github.com:lbrookeIS/dotfiles.git .',
+                   input=b'yes\n', shell=True, check=True)
+    res = subprocess.run('./install-git.sh', check=True)
+    subprocess.run('git config --global user.email "{}"'.format(email),
+                   shell=True, check=True)
+    subprocess.run('git config --global user.name "{}"'.format(name),
+                   shell=True, check=True)
+
+
+def _setup_ssh(email):
+    subprocess.run('ssh-keygen -t rsa -b 4096 -C "{}"'.format(email),
+                   input=b'\n', shell=True, check=True)
+    subprocess.run('eval "$(ssh-agent -s)" && ssh-add ~/.ssh/id_rsa',
+                   shell=True, check=True)
+
+    pip.main(['install', 'github3.py==0.9.3'])
+    from github3 import login
+    user = input('GitHub user name: ')
+    password = getpass('GitHub user password: ')
+    key_name = input('SSH key name: ')
+    g = login(user, password)
+    with open(os.path.expanduser('~/.ssh/id_rsa.pub'), 'r') as key_file:
+        key = g.create_key(key_name, key_file.read())
+    if not key:
+        raise RuntimeError('SSH key creation failed')
+    print('Key added succesfully')
+
+    pip.main(['uninstall', '-y', 'github3.py'])
 
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(
         formatter_class=argparse.ArgumentDefaultsHelpFormatter)
 
-    parser.add_argument('-b', '--bash', action='store_true', help='Configure bash')
-    parser.add_argument('-g', '--git', action='store_true', help='Configure git')
-    parser.add_argument('-G', '--golang', action='store_true', help='Install golang and default global packages')
-    parser.add_argument('-N', '--no-base', action='store_false', dest='base', help='Don\'t install base packages')
-    parser.add_argument('-d', '--docker', action='store_true', help='Install docker')
-    parser.add_argument('-n', '--node-js', action='store_true', help='Install node.js and default global packages')
-    parser.add_argument('-p', '--python-3', action='store_true', help='Install global packages for python 3')
-    parser.add_argument('-r', '--rust', action='store_true', help='Install rust and default global packages')
-    parser.add_argument('-R', '--ruby', action='store_true', help='Install ruby and default global packages')
-    parser.add_argument('-t', '--tmux', action='store_true', help='Install and configure tmux')
-    parser.add_argument('-T', '--themes-and-fonts', action='store_true', help='Install extra themes and fonts')
-    parser.add_argument('-v', '--vim', action='store_true', help='Install and configure vim')
+    parser.add_argument('-d', '--dotfiles-only', action='store_true', help='Only install dotfiles')
 
-    args = vars(parser.parse_args())
+    args = parser.parse_args()
 
-    print('Selected options:', *sorted(k for k, v in args.items() if v), sep='\n\t')
-
-    main(**args)
+    try:
+        main(**vars(args))
+    except KeyboardInterrupt:
+        pass
+    finally:
+        print('\nexiting...')
