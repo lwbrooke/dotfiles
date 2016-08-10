@@ -21,6 +21,5 @@ apt-get install -y --no-install-recommends docker-engine
 service docker start
 docker run --rm hello-world
 docker rmi hello-world
-groupadd docker
 usermod -aG docker logan
 systemctl enable docker
