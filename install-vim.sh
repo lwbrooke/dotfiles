@@ -40,5 +40,6 @@ git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
 vim +PluginInstall +qall
 CUR_DIR=$PWD
 cd ~/.vim/bundle/YouCompleteMe
+export PATH=$PATH:/usr/local/go/bin
 python3 install.py --racer-completer --tern-completer --gocode-completer --clang-completer
 cd $CUR_DIR
