@@ -20,6 +20,7 @@ def main(dotfiles_only):
     subprocess.run('sudo ./install-docker.sh', check=True, shell=True)
     subprocess.run('sudo ./install-rust.sh', check=True, shell=True)
     subprocess.run('sudo ./install-golang.sh', check=True, shell=True)
+    os.environ['PATH'] = '{}:/usr/local/go/bin'.format(os.environ['PATH'])
     subprocess.run('sudo ./install-nodejs.sh', check=True, shell=True)
     subprocess.run('sudo ./install-ruby.sh', check=True, shell=True)
     subprocess.run('sudo ./install-python-3.sh', check=True, shell=True)
