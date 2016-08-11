@@ -271,7 +271,12 @@ let g:ycm_autoclose_preview_window_after_completion=1
 " goto function shortcut
 map <leader>g :YcmCompleter GoToDefinitionElseDeclaration<CR>
 " completion for python 3
-let g:ycm_python_binary_path = '/usr/bin/python3'
+let venv = $VIRTUAL_ENV
+if venv ==? ""
+    let g:ycm_python_binary_path = '/usr/bin/python3'
+else
+    let g:ycm_python_binary_path = venv . '/bin/python'
+endif
 
 " """"""""""
 " vim-flake8
