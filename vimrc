@@ -156,8 +156,8 @@ set number
 set showcmd
 " highlight current line
 set cursorline
-" highlight columns 80 and 120
-set colorcolumn=80
+" highlight columns and 120
+set colorcolumn=120
 " visual autocomplete for menu
 set wildmenu
 " redraw only when necessary
