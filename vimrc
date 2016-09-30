@@ -156,8 +156,8 @@ set number
 set showcmd
 " highlight current line
 set cursorline
-" highlight columns and 120
-set colorcolumn=120
+" highlight columns 80 and 120-999
+let &colorcolumn="80,".join(range(120,999),",")
 " visual autocomplete for menu
 set wildmenu
 " redraw only when necessary
