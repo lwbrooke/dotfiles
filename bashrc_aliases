@@ -47,7 +47,10 @@ mkvenv() {
 
         pip install --upgrade pip > /dev/null
 
-        if [ -e ./requirements.txt ];
+        if [ -e ./requirements-dev.txt ];
+        then
+            pip install -r requirements-dev.txt
+        elif [ -e ./requirements.txt ];
         then
             pip install -r requirements.txt
         fi
