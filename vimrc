@@ -166,6 +166,8 @@ set lazyredraw
 set showmatch
 " enable mouse
 set mouse=a
+" don't wrap lines
+set nowrap
 
 " """""""""
 " Searching
@@ -225,24 +227,10 @@ nnoremap <leader>sw :set shiftwidth=
 nnoremap <leader>r :source ~/.vimrc<CR>
 " clear current search
 nnoremap <leader>cls :nohlsearch<CR>
-" single quote current word
-nnoremap <leader>sqw ciw'<C-r>"'<Esc>bh
-" unsinglequote current word
-nnoremap <leader>usqw di'hPl2xb
-" double quote current word
-nnoremap <leader>dqw ciw"<C-r>""<Esc>bh
-" undoublequote current word
-nnoremap <leader>udqw di"hPl2xb
 " toggle relativenumber
 nnoremap <leader>n :call NumberToggle()<CR>
 " toggle ctrlp_show_hidden
 nnoremap <leader>cph :call CtrlPShowHiddenToggle()<CR>
-" delete parenthesis block
-nnoremap <leader>d( vabd<Esc>
-" delete bracket block
-nnoremap <leader>d[ va[d<Esc>
-" delete braces block
-nnoremap <leader>d{ vaBd<Esc>
 " set foldmethod syntax
 nnoremap <leader>sf :set foldmethod=syntax<CR>zR
 " set foldmethod indent
