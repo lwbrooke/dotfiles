@@ -184,6 +184,8 @@ set smartcase
 set wildignore+=*/node_modules/*
 " ignore virtualenv directories
 set wildignore+=*/venv/*,*/.virtualenv/*,*/.venv/*
+" ignore __pycache__
+set wildignore+=*/__pycache__/*
 
 " """"""""""""""""""""""
 " Swap file organization
