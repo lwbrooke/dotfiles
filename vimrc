@@ -251,7 +251,12 @@ nnoremap <leader>cob :w \| %bd \| e#<CR>
 " """""""""
 " syntastic
 " """""""""
-let g:syntastic_python_python_exec = '/usr/bin/python3'
+let venv = $VIRTUAL_ENV
+if venv ==? ""
+    let g:syntastic_python_python_exec = '/usr/bin/python3'
+else
+    let g:syntastic_python_python_exec = venv . '/bin/python'
+endif
 
 " """""""""""""
 " YouCompleteMe
