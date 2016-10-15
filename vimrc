@@ -166,6 +166,8 @@ set lazyredraw
 set showmatch
 " enable mouse
 set mouse=a
+" don't wrap lines
+set nowrap
 
 " """""""""
 " Searching
@@ -184,6 +186,8 @@ set wildignore+=*/dist/*
 set wildignore+=*/node_modules/*
 " ignore virtualenv directories
 set wildignore+=*/venv/*,*/.virtualenv/*,*/.venv/*
+" ignore __pycache__
+set wildignore+=*/__pycache__/*
 
 " """"""""""""""""""""""
 " Swap file organization
@@ -227,24 +231,10 @@ nnoremap <leader>sw :set shiftwidth=
 nnoremap <leader>r :source ~/.vimrc<CR>
 " clear current search
 nnoremap <leader>cls :nohlsearch<CR>
-" single quote current word
-nnoremap <leader>sqw ciw'<C-r>"'<Esc>bh
-" unsinglequote current word
-nnoremap <leader>usqw di'hPl2xb
-" double quote current word
-nnoremap <leader>dqw ciw"<C-r>""<Esc>bh
-" undoublequote current word
-nnoremap <leader>udqw di"hPl2xb
 " toggle relativenumber
 nnoremap <leader>n :call NumberToggle()<CR>
 " toggle ctrlp_show_hidden
 nnoremap <leader>cph :call CtrlPShowHiddenToggle()<CR>
-" delete parenthesis block
-nnoremap <leader>d( vabd<Esc>
-" delete bracket block
-nnoremap <leader>d[ va[d<Esc>
-" delete braces block
-nnoremap <leader>d{ vaBd<Esc>
 " set foldmethod syntax
 nnoremap <leader>sf :set foldmethod=syntax<CR>zR
 " set foldmethod indent
@@ -263,7 +253,12 @@ nnoremap <leader>cob :w \| %bd \| e#<CR>
 " """""""""
 " syntastic
 " """""""""
-let g:syntastic_python_python_exec = '/usr/bin/python3'
+let venv = $VIRTUAL_ENV
+if venv ==? ""
+    let g:syntastic_python_python_exec = '/usr/bin/python3'
+else
+    let g:syntastic_python_python_exec = venv . '/bin/python'
+endif
 
 " """""""""""""
 " YouCompleteMe
