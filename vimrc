@@ -182,6 +182,8 @@ set ignorecase
 set smartcase
 " ignore build directories
 set wildignore+=*/dist/*
+" ignore coverage directories
+set wildignore+=*/coverage/*
 " ignore node_modules directories
 set wildignore+=*/node_modules/*
 " ignore virtualenv directories
