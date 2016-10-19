@@ -180,16 +180,14 @@ set hlsearch
 set ignorecase
 " case sensitive if any uppercase entered
 set smartcase
-" ignore build directories
-set wildignore+=*/dist/*
-" ignore coverage directories
-set wildignore+=*/coverage/*
 " ignore node_modules directories
 set wildignore+=*/node_modules/*
 " ignore virtualenv directories
 set wildignore+=*/venv/*,*/.virtualenv/*,*/.venv/*
-" ignore __pycache__
-set wildignore+=*/__pycache__/*
+" ignore test and coverage directories
+set wildignore+=*/test_results/*,*/coverage/*
+" ignore build directories
+set wildignore+=*/dist/*,*/__pycache__/*
 
 " """"""""""""""""""""""
 " Swap file organization
