@@ -128,7 +128,7 @@ syntax on
 let python_highlight_all=1
 
 " """""""""""""""""""""""""
-" tabs, spaces, and folding
+" default tabs, spaces, and folding
 " """""""""""""""""""""""""
 " number of visual spaces per tab
 set tabstop=4
@@ -152,6 +152,8 @@ set hidden
 " """"""""""
 " show line numbers
 set number
+" default to using relativenumber
+set relativenumber
 " show cmd in bottom bar
 set showcmd
 " highlight current line
@@ -215,6 +217,16 @@ function! CtrlPShowHiddenToggle()
     endif
 endfunc
 
+function! CmdInTemporaryBuffer(cmd)
+    new
+    setlocal buftype=nofile
+    setlocal bufhidden=delete
+    setlocal nobuflisted
+    setlocal noswapfile
+    execute "silent! r ! " . a:cmd
+    setlocal nomodifiable
+endfunc
+
 " """"""""""""""""""""
 " Normal Mode Mappings
 " """"""""""""""""""""
@@ -235,14 +247,14 @@ nnoremap <leader>cls :nohlsearch<CR>
 nnoremap <leader>n :call NumberToggle()<CR>
 " toggle ctrlp_show_hidden
 nnoremap <leader>cph :call CtrlPShowHiddenToggle()<CR>
-" set foldmethod syntax
-nnoremap <leader>sf :set foldmethod=syntax<CR>zR
-" set foldmethod indent
-nnoremap <leader>if :set foldmethod=indent<CR>zR
-" set foldmethod manual
-nnoremap <leader>mf :set foldmethod=manual<CR>zR
 " close all other buffers
 nnoremap <leader>cob :w \| %bd \| e#<CR>
+" run runtests script and put output in current buffer
+nnoremap <leader>pyt :call CmdInTemporaryBuffer("./runtests")<CR>
+" run runtests script with coverage and put output in current buffer
+nnoremap <leader>pyc :call CmdInTemporaryBuffer("./runtests -c")<CR>
+" start temporary buffer command
+nnoremap <leader>cli :call CmdInTemporaryBuffer("")<Left><Left>
 
 " """""""""""""
 " Auto Commands
