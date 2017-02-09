@@ -253,6 +253,8 @@ nnoremap <leader>cob :w \| %bd \| e#<CR>
 nnoremap <leader>pyt :call CmdInTemporaryBuffer("./runtests")<CR>
 " run runtests script with coverage and put output in current buffer
 nnoremap <leader>pyc :call CmdInTemporaryBuffer("./runtests -c")<CR>
+" autopep8 current file
+nnoremap <leader>p8 :silent execute "! autopep8 -aa --max-line-length 119 --in-place --verbose --ignore E309 %"<CR> \| :redraw!<CR> \| :edit!<CR>
 " start temporary buffer command
 nnoremap <leader>cli :call CmdInTemporaryBuffer("")<Left><Left>
 
