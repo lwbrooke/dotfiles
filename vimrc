@@ -227,6 +227,10 @@ function! CmdInTemporaryBuffer(cmd)
     setlocal nomodifiable
 endfunc
 
+function! Strip(input_string)
+    return substitute(a:input_string, '^\s*\(.\{-}\)\s*$', '\1', '')
+endfunction
+
 " """"""""""""""""""""
 " Normal Mode Mappings
 " """"""""""""""""""""
@@ -292,8 +296,10 @@ endif
 " """"""""""
 " vim-flake8
 " """"""""""
-" run flake8 after write
-" autocmd BufWritePost *.py call Flake8()
+let flake8_location = substitute(system("which flake8"), '\n$', '', '')
+if flake8_location !=? ""
+    let g:flake8_cmd = flake8_location
+endif
 
 " """""""""""
 " vim-airline
