@@ -4,7 +4,6 @@ alias drm='docker rm'
 alias drmi='docker rmi'
 alias drmall='docker rm -f $(docker ps -a -q)'
 alias drmiall='docker rmi -f $(docker images -q)'
-alias dcleannone='docker rmi $(docker images | grep "<none>" | awk "{print \$3}")'
 
 docker-reset() {
     drmall
