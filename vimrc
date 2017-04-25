@@ -284,7 +284,8 @@ endif
 " ensure autocomplete window goes away
 let g:ycm_autoclose_preview_window_after_completion=1
 " goto function shortcut
-map <leader>g :YcmCompleter GoToDefinitionElseDeclaration<CR>
+nnoremap <leader>g :YcmCompleter GoToDefinitionElseDeclaration<CR>
+nnoremap <leader>doc :YcmCompleter GetDoc<CR>
 " completion for python 3
 let venv = $VIRTUAL_ENV
 if venv ==? ""
