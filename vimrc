@@ -107,7 +107,9 @@ filetype plugin indent on    " required
 " see :h vundle for more details or wiki for FAQ
 " Put your non-Plugin stuff after this line
 
+" """"""""""""""
 " Map leader key
+" """"""""""""""
 let mapleader=","
 
 " """"""
@@ -134,6 +136,12 @@ set expandtab
 set shiftwidth=4
 " auto indentation
 set autoindent
+
+" """""""""""""""""""
+" backspace behaviour
+" """""""""""""""""""
+" backspace behaves as in other apps while in insert mode
+set backspace=indent,eol,start
 
 " """""""
 " buffers
