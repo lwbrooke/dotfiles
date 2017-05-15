@@ -60,17 +60,11 @@ Plugin 'chase/vim-ansible-yaml'
 " """"""""""
 " navigation
 " """"""""""
-" project drawer
-" Plugin 'scrooloose/nerdtree'
-
 " split explorer
 Plugin 'jeetsukumaran/vim-filebeagle'
 
 " Window Swap
 Plugin 'wesQ3/vim-windowswap'
-
-" minimap
-Plugin 'severin-lemaignan/vim-minimap'
 
 " split navigation w/tmux
 Plugin 'christoomey/vim-tmux-navigator'
