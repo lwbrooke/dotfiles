@@ -137,9 +137,9 @@ set shiftwidth=4
 " auto indentation
 set autoindent
 
-" """""""""""""""""""
-" backspace behaviour
-" """""""""""""""""""
+" """"""""""""""
+" hidden options
+" """"""""""""""
 " backspace behaves as in other apps while in insert mode
 set backspace=indent,eol,start
 
