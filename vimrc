@@ -123,9 +123,9 @@ syntax on
 " enable all Python syntax highlighting features
 let python_highlight_all=1
 
-" """""""""""""""""""""""""
+" """""""""""""""""""""""""""""""""
 " default tabs, spaces, and folding
-" """""""""""""""""""""""""
+" """""""""""""""""""""""""""""""""
 " number of visual spaces per tab
 set tabstop=4
 " spaces in tabs when editing
@@ -136,6 +136,10 @@ set expandtab
 set shiftwidth=4
 " auto indentation
 set autoindent
+" starting fold level all (within reason) open
+set foldlevelstart=99
+" only evaluate folds on first usage
+set nofoldenable
 
 " """"""""""""""
 " hidden options
@@ -245,7 +249,7 @@ nnoremap <leader>sw :set shiftwidth=
 " j/k scroll by visual lines
 " nnoremap j gj
 " nnoremap k gk
-" resource vimrc
+" re-source vimrc
 nnoremap <leader>r :source ~/.vimrc<CR>
 " clear current search
 nnoremap <leader>cls :nohlsearch<CR>
@@ -263,12 +267,14 @@ nnoremap <leader>pyc :call CmdInTemporaryBuffer("./runtests -c")<CR>
 nnoremap <leader>p8 :silent execute "! autopep8 -aa --max-line-length 119 --in-place --verbose --ignore E309 %"<CR> \| :redraw!<CR> \| :edit!<CR>
 " start temporary buffer command
 nnoremap <leader>cli :call CmdInTemporaryBuffer("")<Left><Left>
+" use recorded q macro
+nnoremap <leader><leader> @q
+" fold/unfold current fold
+nnoremap <Space> za
 
 " """""""""""""
 " Auto Commands
 " """""""""""""
-" start minimap
-" autocmd VimEnter * Minimap
 
 " """""""""
 " syntastic
