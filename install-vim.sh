@@ -26,7 +26,7 @@ cd ~/git/vim/
             --with-x \
             --with-compiledby="Logan Brooke" \
             --prefix=/usr
-make VIMRUNTIMEDIR=/usr/share/vim/vim74
+make VIMRUNTIMEDIR=/usr/share/vim/vim80
 make install
 vim --version
 cd $CUR_DIR
