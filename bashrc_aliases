@@ -15,35 +15,22 @@ source ~/.git-prompt.sh
 PROMPT_COMMAND='__git_ps1 "\w\[\033[0;36m\]" "\[\033[m\]\\\$ "'
 PROMPT_COMMAND="$PROMPT_COMMAND"'$([ -n "$TMUX" ] && tmux setenv TMUXPWD_$(tmux display -p "#D" | tr -d %) "$PWD")'
 
-alias_function() {
-    eval "${1}() $(declare -f ${2} | sed 1d)"
-}
-
-alias_function orig_command_not_found_handle command_not_found_handle
-
-command_not_found_handle() {
-    command=$1
-    shift
-    args=( "$@" )
-
-    ec2_ip=$(~/get_ec2_ip.py "$command")
-    if [ "$ec2_ip" != "" ]
-    then
-        ssh $ec2_ip
-        exit
-    fi
-
-    orig_command_not_found_handle "$command" "${args[@]}"
-}
-
 # create and activate a new virtualenv in the current directory
 mkvenv() {
-    v=${1:-3.5}
-    if [ ! -d ./venv/ ];
+    PY_VERSION=${1:-"3.6"}
+    VENV_DIR=${HOME}/.venvs/${PWD##*/}/${PY_VERSION}
+    if [ ! -d $VENV_DIR ];
     then
-        eval "python$v -m venv ./venv"
+        PYTHON_BINARY=$(which "python${PY_VERSION}_user")
+        if [ -z $PYTHON_BINARY ]
+        then
+            echo "unknown python version: ${PY_VERSION}"
+            exit 1
+        fi
 
-        source ./venv/bin/activate
+        virtualenv -p "${PYTHON_BINARY}" "${VENV_DIR}"
+
+        source ${VENV_DIR}/bin/activate
 
         pip install --upgrade pip > /dev/null
 
@@ -55,18 +42,19 @@ mkvenv() {
             pip install -r requirements.txt
         fi
     else
-        source ./venv/bin/activate
+        source ${VENV_DIR}/bin/activate
     fi
-
 }
 
 rmvenv() {
-    if [ -d ./venv/ ];
+    PY_VERSION=${1:-"3.6"}
+    VENV_DIR=${HOME}/.venvs/${PWD##*/}/${PY_VERSION}
+    if [ -d ${VENV_DIR} ];
     then
         if type deactivate > /dev/null;
         then
             deactivate
         fi
-        rm -r ./venv
+        rm -r ${VENV_DIR}
     fi
 }
