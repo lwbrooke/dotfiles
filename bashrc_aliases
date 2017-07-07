@@ -25,7 +25,7 @@ mkvenv() {
         if [ -z $PYTHON_BINARY ]
         then
             echo "unknown python version: ${PY_VERSION}"
-            exit 1
+            return 1
         fi
 
         virtualenv -p "${PYTHON_BINARY}" "${VENV_DIR}"
@@ -46,6 +46,20 @@ mkvenv() {
     fi
 }
 
+# activate a venv and version, name defaults to current dir name, version defaults to 3.6
+avenv() {
+    VENV_NAME=${1:-${PWD##*/}}
+    PY_VERSION=${2:-"3.6"}
+    VENV_DIR=${HOME}/.venvs/${VENV_NAME}/${PY_VERSION}
+    if [ -d ${VENV_DIR} ];
+    then
+        source ${VENV_DIR}/bin/activate
+    else
+        echo "no venv at ${VENV_DIR}"
+        return 1
+    fi
+}
+
 rmvenv() {
     PY_VERSION=${1:-"3.6"}
     VENV_DIR=${HOME}/.venvs/${PWD##*/}/${PY_VERSION}
@@ -57,4 +71,27 @@ rmvenv() {
         fi
         rm -r ${VENV_DIR}
     fi
+}
+
+ec2ip() {
+    INSTANCE_ID=${1}
+    if [ ! $INSTANCE_ID ]
+    then
+        echo "no istance id specified"
+        return 1
+    fi
+
+    EC2_IP=$(aws ec2 describe-instances --instance-ids ${INSTANCE_ID} |\
+             jq --raw-output '.Reservations[0].Instances[0].NetworkInterfaces[0].PrivateIpAddress')
+    echo $EC2_IP
+}
+
+ec2ssh() {
+    EC2_IP=$(ec2ip ${1})
+    if [ $? -ne 0 ]
+    then
+        echo "failed to get instance id"
+        return 1
+    fi
+    ssh $EC2_IP
 }
