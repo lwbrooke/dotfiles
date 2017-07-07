@@ -302,6 +302,12 @@ else
     let g:ycm_python_binary_path = venv . '/bin/python'
 endif
 
+" """""
+" CtrlP
+" """""
+" set working directory to initial directory
+let g:ctrlp_working_path_mode = 0
+
 " """"""""""
 " vim-flake8
 " """"""""""
