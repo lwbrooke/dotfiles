@@ -24,7 +24,7 @@ curl -fO ${DOWLOAD_URL}
 tar -xvf "Python-${VERSION}.tgz"
 
 pushd "Python-${VERSION}"
-./configure --prefix ${VERSION_DIR}
+./configure --enable-optimizations --prefix ${VERSION_DIR}
 make
 make altinstall
 popd
