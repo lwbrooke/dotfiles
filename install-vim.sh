@@ -32,7 +32,7 @@ vim --version
 cd $CUR_DIR
 
 echo "Configuring vim..."
-ln ./vimrc ~/.vimrc
+ln -s $PWD/vimrc ~/.vimrc
 cp -r ./vim ~/.vim
 
 echo "Installing vim plugins..."

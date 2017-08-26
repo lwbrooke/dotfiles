@@ -5,5 +5,5 @@
 set -e
 
 echo "Configuring bash aliases..."
-ln ./bashrc_aliases ~/.bashrc_aliases
+ln -s $PWD/bashrc_aliases ~/.bashrc_aliases
 echo "source ~/.bashrc_aliases" >> ~/.bashrc
