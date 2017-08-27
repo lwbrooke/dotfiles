@@ -21,3 +21,9 @@ apt-get install -y --no-install-recommends \
 
 echo "Installing python packages..."
 pip install flake8 flake8-docstrings virtualenv
+
+echo "Linking config files..."
+mkdir -p ~/.config
+ln -s $PWD/flake8 ~/.config/flake8
+mkdir -p ~/.ptpython
+ln -s $PWD/ptpython-config.py ~/.ptpython/config.py

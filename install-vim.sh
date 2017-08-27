@@ -33,7 +33,8 @@ cd $CUR_DIR
 
 echo "Configuring vim..."
 ln -s $PWD/vimrc ~/.vimrc
-cp -r ./vim ~/.vim
+mkdir -p ~/.vim
+ln -s $PWD/vim/ftplugin ~/.vim/ftplugin
 
 echo "Installing vim plugins..."
 git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
