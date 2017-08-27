@@ -9,7 +9,7 @@ declare -A VERSIONS=(
     [2.7]=2.7.13
 )
 
-VERSION=${VERSIONS[${1:-"3.6"}]:-"3.6.1"}
+VERSION=${VERSIONS[${1:-"3.6"}]:-"3.6.2"}
 
 VERSION_DIR=${2:-"${HOME}/.python_versions/${VERSION}"}
 if [ -d ${VERSION_DIR} ]
