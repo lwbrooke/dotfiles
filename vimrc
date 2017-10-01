@@ -272,6 +272,13 @@ nnoremap <leader><leader> @q
 " fold/unfold current fold
 nnoremap <Space> za
 
+" """"""""""""""""""""
+" Visual Mode Mappings
+" """"""""""""""""""""
+" search for selected text
+vnoremap // y/\V<C-R>=''.escape(@",'\')<CR><CR>
+
+
 " """""""""""""
 " Auto Commands
 " """""""""""""
