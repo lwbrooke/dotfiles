@@ -3,13 +3,13 @@
 set -e
 
 declare -A VERSIONS=(
-    [3.6]=3.6.1
-    [3.5]=3.5.3
-    [3.4]=3.4.6
+    [3.6]=3.6.2
+    [3.5]=3.5.4
+    [3.4]=3.4.7
     [2.7]=2.7.13
 )
 
-VERSION=${VERSIONS[${1:-"3.6"}]:-"3.6.1"}
+VERSION=${VERSIONS[${1:-"3.6"}]:-"3.6.2"}
 
 VERSION_DIR=${2:-"${HOME}/.python_versions/${VERSION}"}
 if [ -d ${VERSION_DIR} ]
@@ -24,7 +24,7 @@ curl -fO ${DOWLOAD_URL}
 tar -xvf "Python-${VERSION}.tgz"
 
 pushd "Python-${VERSION}"
-./configure --prefix ${VERSION_DIR}
+./configure --enable-optimizations --prefix ${VERSION_DIR}
 make
 make altinstall
 popd

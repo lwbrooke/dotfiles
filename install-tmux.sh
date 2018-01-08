@@ -10,6 +10,6 @@ apt-get install -y --no-install-recommends \
     tmux
 
 echo "Configuring tmux..."
-git clone https://github.com/erikw/tmux-powerline.git ~/git/tmux-powerline/
-ln ./tmux.conf ~/.tmux.conf
-ln ./tmux-powerlinerc ~/.tmux-powerlinerc
+git clone https://github.com/lwbrooke/tmux-powerline.git ~/git/tmux-powerline/
+ln -s $PWD/tmux.conf ~/.tmux.conf
+ln -s $PWD/tmux-powerlinerc ~/.tmux-powerlinerc

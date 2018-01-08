@@ -7,4 +7,4 @@ set -e
 echo "Configuring git..."
 
 cp ./gitconfig ~/.gitconfig
-ln ./git-prompt.sh ~/.git-prompt.sh
+ln -s $PWD/git-prompt.sh ~/.git-prompt.sh
