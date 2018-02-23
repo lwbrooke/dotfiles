@@ -271,6 +271,8 @@ nnoremap <leader>cli :call CmdInTemporaryBuffer("")<Left><Left>
 nnoremap <leader><leader> @q
 " fold/unfold current fold
 nnoremap <Space> za
+" toggle flake8
+nnoremap <leader>f8 :call flake8#Flake8UnplaceMarkers()<CR>
 
 " """"""""""""""""""""
 " Visual Mode Mappings
