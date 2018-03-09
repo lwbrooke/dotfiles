@@ -76,6 +76,10 @@ rmvenv() {
     fi
 }
 
+export WORKON_HOME=$HOME/.virtualenvs
+export PROJECT_HOME=$HOME/git
+source /usr/local/bin/virtualenvwrapper.sh
+
 ec2ip() {
     INSTANCE_ID=${1}
     if [ ! $INSTANCE_ID ]
