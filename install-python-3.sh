@@ -20,7 +20,7 @@ apt-get install -y --no-install-recommends \
     checkinstall
 
 echo "Installing python packages..."
-pip install flake8 flake8-docstrings virtualenv
+pip install flake8 flake8-docstrings virtualenv virtualenvwrapper
 
 echo "Linking config files..."
 mkdir -p ~/.config
