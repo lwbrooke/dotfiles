@@ -41,16 +41,21 @@ Plugin 'Valloric/MatchTagAlways'
 " javascript
 " """"""""""
 " improved syntax highlighing
-Plugin 'pangloss/vim-javascript'
+" Plugin 'pangloss/vim-javascript'
 
 " syntax highlighting for libraries
-Plugin 'othree/javascript-libraries-syntax.vim'
+" Plugin 'othree/javascript-libraries-syntax.vim'
 
 " python
 " """"""
 " PEP8 checking
 " $ pip install flake8 flake8-docstrings
 Plugin 'nvie/vim-flake8'
+
+" golang
+" """"""
+" basic golang support
+Plugin 'fatih/vim-go'
 
 " yaml
 " """"
@@ -196,6 +201,8 @@ set wildignore+=*/venv/*,*/.virtualenv/*,*/.venv/*
 set wildignore+=*/test_results/*,*/coverage/*
 " ignore build directories
 set wildignore+=*/dist/*,*/__pycache__/*
+" ignore vendor directories
+set wildignore+=*/vendor/*
 
 " """"""""""""""""""""""
 " Swap file organization
@@ -325,6 +332,14 @@ if flake8_location !=? ""
     let g:flake8_cmd = flake8_location
 endif
 
+" """"""
+" vim-go
+" """"""
+let g:go_fmt_command = "goimports"
+let g:go_fmt_options = {
+    \ 'goimports': '-local $(pwd | sed "s|$GOPATH/src/||")',
+    \ }
+
 " """""""""""
 " vim-airline
 " """""""""""
@@ -355,4 +370,4 @@ let g:airline_theme='badwolf'
 " """""""""""""""""""""""""""""""
 " javascript-libraries-syntax.vim
 " """""""""""""""""""""""""""""""
-let g:used_javascript_libs = 'angularjs,angularuirouter,requirejs,jasmine'
+" let g:used_javascript_libs = 'angularjs,angularuirouter,requirejs,jasmine'
