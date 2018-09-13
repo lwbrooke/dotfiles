@@ -40,11 +40,6 @@ Plugin 'Valloric/MatchTagAlways'
 
 " javascript
 " """"""""""
-" improved syntax highlighing
-" Plugin 'pangloss/vim-javascript'
-
-" syntax highlighting for libraries
-" Plugin 'othree/javascript-libraries-syntax.vim'
 
 " python
 " """"""
@@ -335,7 +330,9 @@ endif
 " """"""
 " vim-go
 " """"""
+" use goimports for formatting
 let g:go_fmt_command = "goimports"
+" try to discerrn local project (must start vim from project root in $GOPATH)
 let g:go_fmt_options = {
     \ 'goimports': '-local $(pwd | sed "s|$GOPATH/src/||")',
     \ }
@@ -351,23 +348,5 @@ let g:airline_powerline_fonts=1
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#show_buffers = 1
 let g:airline#extensions#tabline#buffer_nr_show = 1
-" use unicode fonts
-" if !exists('g:airline_symbols')
-"   let g:airline_symbols = {}
-" endif
-
-" unicode symbols
-" let g:airline_left_sep = '▶'
-" let g:airline_right_sep = '◀'
-" let g:airline_symbols.crypt = '🔒'
-" let g:airline_symbols.linenr = '¶'
-" let g:airline_symbols.branch = '⎇'
-" let g:airline_symbols.paste = '∥'
-" let g:airline_symbols.whitespace = 'Ξ'
 " theme
 let g:airline_theme='badwolf'
-
-" """""""""""""""""""""""""""""""
-" javascript-libraries-syntax.vim
-" """""""""""""""""""""""""""""""
-" let g:used_javascript_libs = 'angularjs,angularuirouter,requirejs,jasmine'
