@@ -10,11 +10,13 @@ docker-reset() {
     drmiall
 }
 
+# git prompt
 GIT_PS1_SHOWDIRTYSTATE='True'
 source ~/.git-prompt.sh
 PROMPT_COMMAND='__git_ps1 "\w\[\033[0;36m\]" "\[\033[m\]\\\$ "'
 PROMPT_COMMAND="$PROMPT_COMMAND"'$([ -n "$TMUX" ] && tmux setenv TMUXPWD_$(tmux display -p "#D" | tr -d %) "$PWD")'
 
+# git aliases
 alias gbranch="git branch | sed -n 's/^\* //p'"
 alias gpushremote='git push -u origin $(gbranch)'
 
@@ -79,6 +81,7 @@ rmvenv() {
 # virtualenvwrapper
 export WORKON_HOME=$HOME/.virtualenvs
 export PROJECT_HOME=$HOME/git
+export VIRTUALENVWRAPPER_PYTHON=$(which python3)
 source /usr/local/bin/virtualenvwrapper.sh
 
 # golang
