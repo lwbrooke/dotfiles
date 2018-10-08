@@ -51,6 +51,10 @@ Plugin 'nvie/vim-flake8'
 " """"""
 " basic golang support
 Plugin 'fatih/vim-go'
+" debugger and dependencies
+Plugin 'Shougo/vimproc.vim'
+Plugin 'Shougo/vimshell.vim'
+Plugin 'sebdah/vim-delve'
 
 " yaml
 " """"
@@ -336,6 +340,25 @@ let g:go_fmt_command = "goimports"
 let g:go_fmt_options = {
     \ 'goimports': '-local $(pwd | sed "s|$GOPATH/src/||")',
     \ }
+" set up go debug windows
+let g:go_debug_windows = {
+      \ 'vars':  'leftabove 35vnew',
+      \ 'stack': 'botright 10new',
+\ }
+
+" """"""""
+" vimshell
+" """"""""
+" set vimshell editor to macvim on mac
+if has('macunix')
+    let g:vimshell_editor_command = 'mvim -v'
+endif
+
+" """""""""
+" vim-delve
+" """""""""
+" open debug windown under
+let g:delve_new_command = "new"
 
 " """""""""""
 " vim-airline
