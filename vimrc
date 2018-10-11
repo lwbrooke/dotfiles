@@ -340,11 +340,8 @@ let g:go_fmt_command = "goimports"
 let g:go_fmt_options = {
     \ 'goimports': '-local $(pwd | sed "s|$GOPATH/src/||")',
     \ }
-" set up go debug windows
-let g:go_debug_windows = {
-      \ 'vars':  'leftabove 35vnew',
-      \ 'stack': 'botright 10new',
-\ }
+" use camel case for adding struct tags
+let g:go_addtags_transform = "camelcase"
 
 " """"""""
 " vimshell
