@@ -334,21 +334,27 @@ endif
 " """"""
 " vim-go
 " """"""
-" use goimports for formatting
-let g:go_fmt_command = "goimports"
+" use gofmt for formatting
+" use of goimports for formatting currently messes up buffer on Homebrew vim
+let g:go_fmt_command = "gofmt"
+" let g:go_fmt_command = "goimports"
 " try to discerrn local project (must start vim from project root in $GOPATH)
 let g:go_fmt_options = {
     \ 'goimports': '-local $(pwd | sed "s|$GOPATH/src/||")',
     \ }
+" explicitly set fmt autosave
+let g:go_fmt_autosave = 1
 " use camel case for adding struct tags
 let g:go_addtags_transform = "camelcase"
+" run goimports and reload buffer
+nnoremap <leader>imp :GoImports<CR>:edit<CR>
 
 " """"""""
 " vimshell
 " """"""""
 " set vimshell editor to macvim on mac
 if has('macunix')
-    let g:vimshell_editor_command = 'mvim -v'
+    let g:vimshell_editor_command = 'vim'
 endif
 
 " """""""""
