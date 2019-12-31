@@ -353,6 +353,10 @@ let g:go_fmt_options = {
 let g:go_fmt_autosave = 1
 " use camel case for adding struct tags
 let g:go_addtags_transform = "camelcase"
+" toggle camel case
+nnoremap <leader>gtc :let g:go_addtags_transform = "camelcase"<CR>
+" toggle snake case
+nnoremap <leader>gts :let g:go_addtags_transform = "snakecase"<CR>
 " run goimports and reload buffer
 nnoremap <leader>imp :GoImports<CR>:edit<CR>
 
