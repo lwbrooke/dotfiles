@@ -336,6 +336,7 @@ let flake8_location = substitute(system("which flake8"), '\n$', '', '')
 if flake8_location !=? ""
     let g:flake8_cmd = flake8_location
 endif
+let g:flake8_ignore = 'D100,D103'
 
 " """"""
 " vim-go
