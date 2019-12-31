@@ -243,6 +243,12 @@ function! Strip(input_string)
     return substitute(a:input_string, '^\s*\(.\{-}\)\s*$', '\1', '')
 endfunction
 
+function! SearchJustify(count)
+    let format = "%-" . a:count . "s"
+    let pattern = getreg('/')
+    s//\=printf(format, submatch(0))
+endfunc
+
 " """"""""""""""""""""
 " Normal Mode Mappings
 " """"""""""""""""""""
