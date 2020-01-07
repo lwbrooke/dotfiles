@@ -203,6 +203,11 @@ set wildignore+=*/dist/*,*/__pycache__/*
 " ignore vendor directories
 set wildignore+=*/vendor/*
 
+" """""
+" netrw
+" """""
+let g:netrw_liststyle=3
+
 " """"""""""""""""""""""
 " Swap file organization
 " """"""""""""""""""""""
@@ -245,7 +250,6 @@ endfunction
 
 function! SearchJustify(count)
     let format = "%-" . a:count . "s"
-    let pattern = getreg('/')
     s//\=printf(format, submatch(0))
 endfunc
 
