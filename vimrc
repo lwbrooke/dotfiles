@@ -65,7 +65,7 @@ Plugin 'chase/vim-ansible-yaml'
 " navigation
 " """"""""""
 " split explorer
-Plugin 'jeetsukumaran/vim-filebeagle'
+" Plugin 'jeetsukumaran/vim-filebeagle'
 
 " Window Swap
 Plugin 'wesQ3/vim-windowswap'
@@ -122,6 +122,7 @@ let mapleader=","
 " set colorscheme
 set background=dark
 silent! colorscheme badwolf
+" silent! colorscheme vice
 " enable syntax highlighting
 syntax on
 " enable all Python syntax highlighting features
@@ -206,12 +207,29 @@ set wildignore+=*/vendor/*
 " """""
 " netrw
 " """""
+" use tree style listing
 let g:netrw_liststyle=3
+" disable the banner
+let g:netrw_banner=0
+" netrw
+let g:netrw_bufsettings='noma nomod nowrap ro nobl'
 
 " """"""""""""""""""""""
 " Swap file organization
 " """"""""""""""""""""""
 set directory^=$HOME/.vim/tmp//
+
+" """"""""
+" autocmds
+" """"""""
+augroup netrw_mapping
+    autocmd!
+    autocmd filetype netrw call NetrwMappings()
+augroup END
+
+function! NetrwMappings()
+    noremap <buffer> q :bd<CR>
+endfunction
 
 " """"""""""""""""
 " Custom Functions
@@ -289,6 +307,8 @@ nnoremap <leader><leader> @q
 nnoremap <Space> za
 " toggle flake8
 nnoremap <leader>f8 :call flake8#Flake8UnplaceMarkers()<CR>
+" netrw open
+nnoremap - :Explore<CR>
 
 " """"""""""""""""""""
 " Visual Mode Mappings
@@ -391,3 +411,4 @@ let g:airline#extensions#tabline#show_buffers = 1
 let g:airline#extensions#tabline#buffer_nr_show = 1
 " theme
 let g:airline_theme='badwolf'
+" let g:airline_theme='vice'
