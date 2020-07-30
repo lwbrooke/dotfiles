@@ -78,21 +78,25 @@ rmvenv() {
     fi
 }
 
+# path
+export PATH=$HOME/.local/bin:$PATH
+
 # virtualenvwrapper
 export WORKON_HOME=$HOME/.virtualenvs
 export PROJECT_HOME=$HOME/git
 export VIRTUALENVWRAPPER_PYTHON=$(which python3)
-source /usr/local/bin/virtualenvwrapper.sh
+source $(which virtualenvwrapper.sh)
 
 # golang
 export GOPATH=$HOME/go
 
 # node
 export NVM_DIR=$HOME/.nvm
-. "/usr/local/opt/nvm/nvm.sh"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
 # path
-export PATH=$HOME/bin:$PATH:$GOPATH/bin
+export PATH=$HOME/bin:$PATH:$GOPATH/bin:/usr/local/go/bin
 
 ec2ip() {
     INSTANCE_ID=${1}
