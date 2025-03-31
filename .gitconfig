@@ -1,0 +1,22 @@
+[branch]
+        sort = -committerdate
+[column]
+        ui = auto
+[commit]
+        verbose = true
+[diff]
+        algorithm = histogram
+        colorMoved = plain
+        mnemonicPrefix = true
+        renames = true
+[help]
+        autocorrect = prompt
+[init]
+        defaultBranch = main
+[merge]
+        conflictstyle = zdiff3 
+[push]
+        default = simple
+        autoSetupRemote = true
+[tag]
+        sort = version:refname
