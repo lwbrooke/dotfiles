@@ -1,9 +1,0 @@
-#!/bin/bash
-
-if [ "$1" = "containers" ]; then
-    docker ps -a | grep $2 | awk '{print $1}' | xargs --no-run-if-empty docker rm
-elif [ "$1" = "images" ]; then
-    docker images | grep $2 | awk '{print $3}' | xargs --no-run-if-empty docker rmi
-else
-    echo "$1 is unkown command. use either 'images' or 'containers'"
-fi
